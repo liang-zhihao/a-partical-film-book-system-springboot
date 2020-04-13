@@ -1,5 +1,6 @@
 package com.liang.ticketbooksystem;
 
+import org.apache.ibatis.io.Resources;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
