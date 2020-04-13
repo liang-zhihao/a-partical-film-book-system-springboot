@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liang.ticketbooksystem.mapper.SessionMapper">
+    <resultMap id="BaseResultMap" type="com.liang.ticketbooksystem.pojo.Session">
+        <id column="session_id" jdbcType="INTEGER" property="sessionId" />
+        <result column="film_id" jdbcType="INTEGER" property="filmId" />
+        <result column="time" jdbcType="TIMESTAMP" property="time" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="remaining_seats" jdbcType="INTEGER" property="remainingSeats" />
+        <result column="room_id" jdbcType="INTEGER" property="roomId" />
+        <result column="cinema_id" jdbcType="INTEGER" property="cinemaId" />
+    </resultMap>
+</mapper>

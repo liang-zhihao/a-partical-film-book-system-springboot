@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liang.ticketbooksystem.mapper.FilmMapper">
+    <resultMap id="BaseResultMap" type="com.liang.ticketbooksystem.pojo.Film">
+        <id column="film_id" jdbcType="INTEGER" property="filmId" />
+        <result column="type_id" jdbcType="INTEGER" property="typeId" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="director" jdbcType="VARCHAR" property="director" />
+        <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+        <result column="poster" jdbcType="VARCHAR" property="poster" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="actors" jdbcType="VARCHAR" property="actors" />
+        <result column="rating" jdbcType="DOUBLE" property="rating" />
+        <result column="duration" jdbcType="INTEGER" property="duration" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    film_id, type_id, `name`, director, introduction, poster, `status`, actors, rating,
+    duration
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from film
+        where film_id = #{filmId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from film
+    where film_id = #{filmId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" keyColumn="film_id" keyProperty="filmId" parameterType="com.liang.ticketbooksystem.pojo.Film" useGeneratedKeys="true">
+    insert into film (type_id, `name`, director,
+      introduction, poster, `status`,
+      actors, rating, duration
+      )
+    values (#{typeId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{director,jdbcType=VARCHAR},
+      #{introduction,jdbcType=VARCHAR}, #{poster,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+      #{actors,jdbcType=VARCHAR}, #{rating,jdbcType=DOUBLE}, #{duration,jdbcType=INTEGER}
+      )
+  </insert>
+    <insert id="insertSelective" keyColumn="film_id" keyProperty="filmId" parameterType="com.liang.ticketbooksystem.pojo.Film" useGeneratedKeys="true">
+        insert into film
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="typeId != null">
+                type_id,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="director != null">
+                director,
+            </if>
+            <if test="introduction != null">
+                introduction,
+            </if>
+            <if test="poster != null">
+                poster,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="actors != null">
+                actors,
+            </if>
+            <if test="rating != null">
+                rating,
+            </if>
+            <if test="duration != null">
+                duration,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="typeId != null">
+                #{typeId,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="director != null">
+                #{director,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="poster != null">
+                #{poster,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="actors != null">
+                #{actors,jdbcType=VARCHAR},
+            </if>
+            <if test="rating != null">
+                #{rating,jdbcType=DOUBLE},
+            </if>
+            <if test="duration != null">
+                #{duration,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.liang.ticketbooksystem.pojo.Film">
+        update film
+        <set>
+            <if test="typeId != null">
+                type_id = #{typeId,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="director != null">
+                director = #{director,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="poster != null">
+                poster = #{poster,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="actors != null">
+                actors = #{actors,jdbcType=VARCHAR},
+            </if>
+            <if test="rating != null">
+                rating = #{rating,jdbcType=DOUBLE},
+            </if>
+            <if test="duration != null">
+                duration = #{duration,jdbcType=INTEGER},
+            </if>
+        </set>
+        where film_id = #{filmId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.liang.ticketbooksystem.pojo.Film">
+    update film
+    set type_id = #{typeId,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      director = #{director,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      poster = #{poster,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR},
+      actors = #{actors,jdbcType=VARCHAR},
+      rating = #{rating,jdbcType=DOUBLE},
+      duration = #{duration,jdbcType=INTEGER}
+    where film_id = #{filmId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liang.ticketbooksystem.mapper.CinemaMapper">
+  <resultMap id="BaseResultMap" type="com.liang.ticketbooksystem.pojo.Cinema">
+    <id column="cinema_id" jdbcType="INTEGER" property="cinemaId" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cinema_id, `location`, tel, `name`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cinema
+    where cinema_id = #{cinemaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cinema
+    where cinema_id = #{cinemaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="cinema_id" keyProperty="cinemaId" parameterType="com.liang.ticketbooksystem.pojo.Cinema" useGeneratedKeys="true">
+    insert into cinema (`location`, tel, `name`
+      )
+    values (#{location,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="cinema_id" keyProperty="cinemaId" parameterType="com.liang.ticketbooksystem.pojo.Cinema" useGeneratedKeys="true">
+    insert into cinema
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="location != null">
+        `location`,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liang.ticketbooksystem.pojo.Cinema">
+    update cinema
+    <set>
+      <if test="location != null">
+        `location` = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cinema_id = #{cinemaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liang.ticketbooksystem.pojo.Cinema">
+    update cinema
+    set `location` = #{location,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR}
+    where cinema_id = #{cinemaId,jdbcType=INTEGER}
+  </update>
+  <select id="getCinemas" resultMap="BaseResultMap">
+    select * from cinema
+  </select>
+</mapper>
