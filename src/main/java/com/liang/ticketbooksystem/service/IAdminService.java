@@ -1,24 +1,27 @@
 package com.liang.ticketbooksystem.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.liang.ticketbooksystem.pojo.Admin;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Service
 public interface IAdminService extends IService<Admin> {
-    int deleteByPrimaryKey(Integer adminId);
+    ResponseEntity<JSONObject> getList();
 
-    int insert(Admin record);
+    ResponseEntity<JSONObject> queryById(@PathVariable Integer id);
 
-    int insertSelective(Admin record);
+    ResponseEntity<JSONObject> deleteAdmin(@RequestParam("adminId") int adminId);
 
-    Admin selectByPrimaryKey(Integer adminId);
+    ResponseEntity<JSONObject> updateAdmin(@RequestBody JSONObject jsonParam);
 
-    int updateByPrimaryKeySelective(Admin record);
+    ResponseEntity<JSONObject> createAdmin(@RequestBody JSONObject jsonParam);
 
-    int updateByPrimaryKey(Admin record);
-
-    List<Admin> getAllAdmin();
+    ResponseEntity<JSONObject> isUsernameDuplication(@RequestParam("username") String username);
 }

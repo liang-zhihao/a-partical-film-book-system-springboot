@@ -12,3 +12,12 @@ spring:
 mybatis:
   typeAliasesPackage: com.liang.ticketbooksystem.pojo
   mapperLocations: classpath:mapper/*.xml
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+jwt:
+  secret: secret
+  expiration: 7200000
+  token: Authorization

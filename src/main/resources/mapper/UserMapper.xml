@@ -29,6 +29,6 @@
         select * from user where user_id = #{id}
     </select>
     <select id="auth" resultType="java.lang.Integer">
-        select count(*) from  user  where user_id = #{proof} and password= #{password}
+        select count(*) from  user  where username = #{proof} and password= #{password}
     </select>
 </mapper>

@@ -3,10 +3,9 @@ package com.liang.ticketbooksystem.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.liang.ticketbooksystem.pojo.Room;
-import com.liang.ticketbooksystem.pojo.Session;
 import com.liang.ticketbooksystem.serviceImpl.RoomServiceImpl;
-import com.liang.ticketbooksystem.utils.MyMsg;
-import com.liang.ticketbooksystem.utils.MyUtils;
+import com.liang.ticketbooksystem.pojo.support.ResponseMsg;
+import com.liang.ticketbooksystem.utils.ServiceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/room")
+//TODO: start with here! update your code!
 public class RoomController {
     @Autowired
     private RoomServiceImpl service;
@@ -31,9 +31,9 @@ public class RoomController {
     public ResponseEntity<JSONObject> getList() {
         List<Room> list = service.list();
         if (list == null) {
-            return MyUtils.responseNotFound();
+            return ServiceUtils.responseNotFound();
         } else {
-            return MyUtils.responseOk(list, "get all rooms");
+            return ServiceUtils.responseOk(list, "get all rooms");
         }
     }
 
@@ -42,9 +42,9 @@ public class RoomController {
         Room room = service.getById(id);
         boolean bool = service.removeById(id);
         if (bool) {
-            return MyUtils.response(HttpStatus.OK.value(), room, MyMsg.SUCCEED_TO_DELETE.v());
+            return ServiceUtils.response(HttpStatus.OK.value(), room, ResponseMsg.SUCCEED_TO_DELETE.v());
         } else {
-            return MyUtils.response(HttpStatus.BAD_REQUEST.value(), room, MyMsg.FAILED_TO_DELETE.v());
+            return ServiceUtils.response(HttpStatus.BAD_REQUEST.value(), room, ResponseMsg.FAILED_TO_DELETE.v());
         }
 
     }
@@ -55,9 +55,9 @@ public class RoomController {
         boolean res = service.updateById(room);
         room = service.getById(room.getRoomId());
         if (res) {
-            return MyUtils.response(HttpStatus.OK.value(), room, MyMsg.SUCCEED_TO_UPDATE.v());
+            return ServiceUtils.response(HttpStatus.OK.value(), room, ResponseMsg.SUCCEED_TO_UPDATE.v());
         } else {
-            return MyUtils.response(HttpStatus.BAD_REQUEST.value(), room, MyMsg.FAILED_TO_UPDATE.v());
+            return ServiceUtils.response(HttpStatus.BAD_REQUEST.value(), room, ResponseMsg.FAILED_TO_UPDATE.v());
         }
 
     }
@@ -67,9 +67,9 @@ public class RoomController {
         Room room = JSONObject.toJavaObject(jsonObject, Room.class);
         boolean i = service.save(room);
         if (i) {
-            return MyUtils.responseOk(room, MyMsg.SUCCEED_TO_CREATE.v());
+            return ServiceUtils.responseOk(room, ResponseMsg.SUCCEED_TO_CREATE.v());
         } else {
-            return MyUtils.responseBad(room, MyMsg.FAILED_TO_CREATE.v());
+            return ServiceUtils.responseBad(room, ResponseMsg.FAILED_TO_CREATE.v());
         }
     }
 }

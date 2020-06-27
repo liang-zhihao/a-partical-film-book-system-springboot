@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.Map;
 
-public class MyUtils {
+public class ServiceUtils {
 
     public static JSONObject addValToData(JSONObject jsonObject, Map<String, Object> map) {
         JSONObject data = jsonObject.getJSONObject("data");
@@ -18,8 +18,7 @@ public class MyUtils {
     }
 
     public static ResponseEntity<JSONObject> response(int httpStatus, Object data, String msg) {
-//        TODO: JSON.put() can automatically parse object to json
-//        TODO:Dont forget to write table
+
         JSONObject result = new JSONObject();
         result.put("msg", msg);
         result.put("code", httpStatus);
@@ -28,8 +27,7 @@ public class MyUtils {
     }
 
     public static ResponseEntity<JSONObject> responseOk(Object data, String msg) {
-//        TODO: JSON.put() can automatically parse object to json
-//        TODO:Dont forget to write table
+
         int httpStatus = HttpStatus.OK.value();
         JSONObject result = new JSONObject();
         result.put("msg", msg);
@@ -39,8 +37,7 @@ public class MyUtils {
     }
 
     public static ResponseEntity<JSONObject> responseBad(Object data, String msg) {
-//        TODO: JSON.put() can automatically parse object to json
-//        TODO:Dont forget to write table
+
         int httpStatus = HttpStatus.BAD_REQUEST.value();
         JSONObject result = new JSONObject();
         result.put("msg", msg);
@@ -50,8 +47,7 @@ public class MyUtils {
     }
 
     public static ResponseEntity<JSONObject> responseNotFound() {
-//        TODO: JSON.put() can automatically parse object to json
-//        TODO:Dont forget to write table
+
 
         int httpStatus = HttpStatus.NOT_FOUND.value();
         JSONObject result = new JSONObject();

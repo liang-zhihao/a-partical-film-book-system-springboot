@@ -1,7 +1,11 @@
 package com.liang.ticketbooksystem.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.liang.ticketbooksystem.pojo.Cinema;
 import com.liang.ticketbooksystem.pojo.Session;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +16,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-04-12
  */
 public interface ISessionService extends IService<Session> {
-
+    List<Session> myGetList();
+    List<Session> myGetList(QueryWrapper queryWrapper);
 }

@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.liang.ticketbooksystem.pojo.Type;
 import com.liang.ticketbooksystem.serviceImpl.TypeServiceImpl;
 import com.liang.ticketbooksystem.utils.MyHttpStatus;
-import com.liang.ticketbooksystem.utils.MyMsg;
-import com.liang.ticketbooksystem.utils.MyUtils;
+import com.liang.ticketbooksystem.pojo.support.ResponseMsg;
+import com.liang.ticketbooksystem.utils.ServiceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,9 +35,9 @@ public class TypeController {
     public ResponseEntity<JSONObject> getTypes() {
         List<Type> list = typeService.list();
         if (list == null) {
-            return MyUtils.responseNotFound();
+            return ServiceUtils.responseNotFound();
         } else {
-            return MyUtils.responseOk(list, "get all types");
+            return ServiceUtils.responseOk(list, "get all types");
         }
     }
 
@@ -46,9 +46,9 @@ public class TypeController {
         Type type = typeService.getById(id);
         boolean bool = typeService.removeById(id);
         if (bool) {
-            return MyUtils.response(HttpStatus.OK.value(), type, MyMsg.SUCCEED_TO_DELETE.v());
+            return ServiceUtils.response(HttpStatus.OK.value(), type, ResponseMsg.SUCCEED_TO_DELETE.v());
         } else {
-            return MyUtils.response(HttpStatus.BAD_REQUEST.value(), type, MyMsg.FAILED_TO_DELETE.v());
+            return ServiceUtils.response(HttpStatus.BAD_REQUEST.value(), type, ResponseMsg.FAILED_TO_DELETE.v());
         }
 
     }
@@ -59,9 +59,9 @@ public class TypeController {
         boolean res = typeService.updateById(type);
         type = typeService.getById(type.getTypeId());
         if (res) {
-            return MyUtils.response(HttpStatus.OK.value(), type, MyMsg.SUCCEED_TO_UPDATE.v());
+            return ServiceUtils.response(HttpStatus.OK.value(), type, ResponseMsg.SUCCEED_TO_UPDATE.v());
         } else {
-            return MyUtils.response(HttpStatus.BAD_REQUEST.value(), type, MyMsg.FAILED_TO_UPDATE.v());
+            return ServiceUtils.response(HttpStatus.BAD_REQUEST.value(), type, ResponseMsg.FAILED_TO_UPDATE.v());
         }
 
     }
@@ -71,19 +71,19 @@ public class TypeController {
         Type type = JSONObject.toJavaObject(jsonObject, Type.class);
         boolean i = typeService.save(type);
         if(i){
-            return  MyUtils.responseOk(type,MyMsg.SUCCEED_TO_CREATE.v());
+            return  ServiceUtils.responseOk(type, ResponseMsg.SUCCEED_TO_CREATE.v());
         }else {
-            return  MyUtils.responseBad(type,MyMsg.FAILED_TO_CREATE.v());
+            return  ServiceUtils.responseBad(type, ResponseMsg.FAILED_TO_CREATE.v());
         }
     }
     @GetMapping("/type-duplication")
     public ResponseEntity<JSONObject> isTypeDuplication(@RequestParam("type") String type) throws ClassNotFoundException {
 
-        boolean res=MyUtils.isDuplication("type",type,typeService);
+        boolean res= ServiceUtils.isDuplication("type",type,typeService);
         if (res ) {
-            return MyUtils.response(MyHttpStatus.INFO_DUPLICATION.value(),"","Sorry, the type is duplicate");
+            return ServiceUtils.response(MyHttpStatus.INFO_DUPLICATION.value(),"","Sorry, the type is duplicate");
         } else {
-            return MyUtils.response(HttpStatus.OK.value(),"","succeed to find");
+            return ServiceUtils.response(HttpStatus.OK.value(),"","succeed to find");
         }
 
     }
