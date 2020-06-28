@@ -28,5 +28,5 @@ public interface IFilmService extends IService<Film> {
     ResponseEntity<JSONObject> getList();
 
     ResponseEntity<JSONObject> createFilm(@RequestBody JSONObject jsonObject);
-
+    Film wrap(Film film);
 }

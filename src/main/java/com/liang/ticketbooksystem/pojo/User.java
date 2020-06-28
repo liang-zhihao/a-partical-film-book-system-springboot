@@ -23,6 +23,8 @@ public class User {
     private int userId;
     @TableField(exist = false)
     private List<String> roles;
+    @TableField(exist = false)
+    private String accessToken;
     @Override
     public String toString() {
         return "User{" +

@@ -2,7 +2,7 @@ package com.liang.ticketbooksystem.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.liang.ticketbooksystem.serviceImpl.CommentServiceImpl;
+import com.liang.ticketbooksystem.service.serviceImpl.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

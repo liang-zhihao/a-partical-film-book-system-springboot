@@ -1,4 +1,4 @@
-package com.liang.ticketbooksystem.serviceImpl;
+package com.liang.ticketbooksystem.service.serviceImpl;
 
 import com.liang.ticketbooksystem.pojo.Seat;
 import com.liang.ticketbooksystem.mapper.SeatMapper;

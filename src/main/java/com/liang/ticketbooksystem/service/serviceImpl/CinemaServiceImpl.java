@@ -1,4 +1,4 @@
-package com.liang.ticketbooksystem.serviceImpl;
+package com.liang.ticketbooksystem.service.serviceImpl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

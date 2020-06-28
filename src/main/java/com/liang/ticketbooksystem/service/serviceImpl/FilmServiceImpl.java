@@ -1,18 +1,16 @@
-package com.liang.ticketbooksystem.serviceImpl;
+package com.liang.ticketbooksystem.service.serviceImpl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.liang.ticketbooksystem.pojo.Film;
 import com.liang.ticketbooksystem.mapper.FilmMapper;
-import com.liang.ticketbooksystem.pojo.Session;
 import com.liang.ticketbooksystem.pojo.support.Response;
 import com.liang.ticketbooksystem.service.IFilmService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.liang.ticketbooksystem.utils.MyHttpStatus;
 import com.liang.ticketbooksystem.utils.ServiceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +35,7 @@ public class FilmServiceImpl extends ServiceImpl<FilmMapper, Film> implements IF
     private TypeServiceImpl typeService;
     @Autowired
     private SessionServiceImpl sessionService;
-    private QueryWrapper queryWrapper = new QueryWrapper<>();
+    private final QueryWrapper queryWrapper = new QueryWrapper<>();
 
     @Override
     public ResponseEntity<JSONObject> createFilm(@RequestBody JSONObject jsonObject) {
@@ -53,7 +51,7 @@ public class FilmServiceImpl extends ServiceImpl<FilmMapper, Film> implements IF
         return Response.succeedToCreate(film);
 
     }
-
+    @Override
     public Film wrap(Film film) {
         if (film.getTypeId() != null) {
             String type = typeService.getById(film.getTypeId()).getType();
@@ -61,7 +59,7 @@ public class FilmServiceImpl extends ServiceImpl<FilmMapper, Film> implements IF
         }
         queryWrapper.clear();
         queryWrapper.eq("film_id", film.getFilmId());
-        List<Session> sessionList = sessionService.myGetList(queryWrapper);
+        List sessionList = sessionService.list(queryWrapper);
         film.setSessionList(sessionList);
         return film;
     }

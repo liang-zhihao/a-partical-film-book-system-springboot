@@ -2,7 +2,7 @@ package com.liang.ticketbooksystem.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.liang.ticketbooksystem.serviceImpl.FilmServiceImpl;
+import com.liang.ticketbooksystem.service.serviceImpl.FilmServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class FilmController {
     @Autowired
-    private FilmServiceImpl filmService;
+    private  FilmServiceImpl filmService;
 
     @PostMapping("/film")
     public ResponseEntity<JSONObject> insertFilm(@RequestBody JSONObject jsonObject) {

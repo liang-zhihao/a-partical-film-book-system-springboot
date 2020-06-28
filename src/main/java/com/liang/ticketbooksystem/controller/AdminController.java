@@ -1,11 +1,7 @@
 package com.liang.ticketbooksystem.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.liang.ticketbooksystem.pojo.Admin;
-import com.liang.ticketbooksystem.serviceImpl.AdminServiceImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.liang.ticketbooksystem.service.serviceImpl.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
