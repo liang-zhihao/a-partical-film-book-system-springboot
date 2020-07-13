@@ -3,20 +3,20 @@ package com.liang.ticketbooksystem;
 import com.liang.ticketbooksystem.pojo.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.lang.Nullable;
 
 @SpringBootTest
 class TicketBookSystemApplicationTests {
     public static void main(String[] args) {
-User user=new User();
-method(user);
+        User user = new User();
+        method(user);
         System.out.println(user.getEmail());
     }
-    public static void method(User user){
+
+    public static void method(User user) {
         user.setEmail("123123");
     }
 
-//    @Test
+    //    @Test
 //    void contextLoads() {
 //        System.out.println();
 //        int[] a = linearFib(5);
@@ -36,5 +36,8 @@ method(user);
 //            return (new int[]{F[0] + F[1], F[0]});
 //        }
 //    }
+    @Test
+    public void test() {
 
+    }
 }

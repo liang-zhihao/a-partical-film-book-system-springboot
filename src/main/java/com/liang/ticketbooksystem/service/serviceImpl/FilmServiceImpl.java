@@ -60,6 +60,7 @@ public class FilmServiceImpl extends ServiceImpl<FilmMapper, Film> implements IF
         queryWrapper.clear();
         queryWrapper.eq("film_id", film.getFilmId());
         List sessionList = sessionService.list(queryWrapper);
+        sessionService.warpList(sessionList);
         film.setSessionList(sessionList);
         return film;
     }

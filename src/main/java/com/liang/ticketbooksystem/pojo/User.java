@@ -16,7 +16,7 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private int tel;
+    private String tel;
     private int isStudent;
     private String portrait;
     @TableId(value = "user_id", type = IdType.AUTO)

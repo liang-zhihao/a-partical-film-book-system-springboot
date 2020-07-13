@@ -18,7 +18,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     // use alibaba's fastjson
     @Override
     public ResponseEntity<JSONObject> auth(@RequestBody JSONObject jsonParam) {
-
+        System.out.println(jsonParam.toJSONString());
         String proof = jsonParam.getString("proof");
         String password = jsonParam.getString("password");
 
@@ -50,6 +52,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             queryWrapper.clear();
             queryWrapper.eq("username", userDetails.getUsername());
             User user = userServiceImp.getOne(queryWrapper);
+            user.setAccessToken(token);
             return Response.ok(ResponseMsg.SUCCEED_TO_LOGIN.v(), user);
         }
         return Response.bad("failed to login");
@@ -96,11 +99,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public ResponseEntity<JSONObject> create(@RequestBody JSONObject jsonObject) throws ClassNotFoundException {
         User user = JSONObject.toJavaObject(jsonObject, User.class);
-        if (ServiceUtils.isDuplication("username", user.getUsername(), this)) {
+//        if (ServiceUtils.isDuplication("username", user.getUsername(), this)) {
+//
+//
+//        }
+        return save(user) ? Response.succeedToCreate(user) : Response.failedToCreate();
+//        return Response.result(MyHttpStatus.INFO_DUPLICATION.value(), "", "username has existed");
 
-            return save(user) ? Response.succeedToCreate(user) : Response.failedToCreate();
-        }
-        return Response.result(MyHttpStatus.INFO_DUPLICATION.value(), "", "username has existed");
     }
     @Override
     public ResponseEntity<JSONObject> isUsernameDuplication(@RequestParam("username") String username) throws ClassNotFoundException {
@@ -117,8 +122,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         queryWrapper.eq("username", username);
         User user = userServiceImp.getOne(queryWrapper);
         return user != null ? Response.succeedToQuery(user) : Response.failedToQuery();
-    }
 
+    }
+    public void warp(User user){
+
+    }
 
 
 }

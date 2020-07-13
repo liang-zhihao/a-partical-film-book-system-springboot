@@ -1,10 +1,8 @@
 package com.liang.ticketbooksystem.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.liang.ticketbooksystem.pojo.Cinema;
-import com.liang.ticketbooksystem.pojo.Session;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.liang.ticketbooksystem.pojo.Session;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,4 +30,5 @@ public interface ISessionService extends IService<Session> {
     ResponseEntity<JSONObject> getSessionById(@PathVariable Integer id);
 
     void warp(Session s);
+    void warpList(List<Session> list);
 }

@@ -85,5 +85,15 @@ public class SessionServiceImpl extends ServiceImpl<SessionMapper, Session> impl
         s.setFilm(filmService.getById(s.getFilmId()));
         s.setRoom(roomService.getById(s.getRoomId()));
     }
+    @Override
+    public void warpList(List<Session> list) {
+        if(list!=null){
+            for (Session s : list
+            ) {
+                warp(s);
+            }
+        }
+
+    }
 
 }

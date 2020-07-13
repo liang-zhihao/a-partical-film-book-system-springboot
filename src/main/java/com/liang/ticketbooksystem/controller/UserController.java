@@ -23,43 +23,43 @@ public class UserController {
 
     @PostMapping(value = "/auth")
     public ResponseEntity<JSONObject> auth(@RequestBody JSONObject jsonParam) {
-     return service.auth(jsonParam);
+        return service.auth(jsonParam);
 
 
     }
 
     @GetMapping("/user")
     public ResponseEntity<JSONObject> getUsers() {
-      return service.getList();
+        return service.getList();
 
     }
 
     @DeleteMapping("/user")
     public ResponseEntity<JSONObject> delUser(@RequestParam("userId") Integer id) {
-      return service.delUser(id);
+        return service.delUser(id);
 
     }
 
     @PutMapping("/user")
     public ResponseEntity<JSONObject> updateUser(@RequestBody JSONObject jsonObject) {
-      return service.updateUser(jsonObject);
+        return service.updateUser(jsonObject);
     }
 
-        @GetMapping("/user/{id}")
+    @GetMapping("/user/{id}")
     public ResponseEntity<JSONObject> getUserById(@PathVariable Integer id) {
-   return service.getUserById(id);
+        return service.getUserById(id);
 
     }
 
 
     @PostMapping("/user")
     public ResponseEntity<JSONObject> saveUser(@RequestBody JSONObject jsonObject) throws ClassNotFoundException {
-      return service.create(jsonObject);
+        return service.create(jsonObject);
     }
 
     @GetMapping("/user/username-duplication")
     public ResponseEntity<JSONObject> isUsernameDuplication(@RequestParam("username") String username) throws ClassNotFoundException {
- return service.isUsernameDuplication(username);
+        return service.isUsernameDuplication(username);
     }
 
     @PostMapping("/user/accessToken")
