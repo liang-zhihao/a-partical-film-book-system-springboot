@@ -64,6 +64,6 @@
   </update>
 
     <select id="getAllAdmin" resultMap="BaseResultMap">
-    select * from admin
-</select>
+        select * from admin
+    </select>
 </mapper>

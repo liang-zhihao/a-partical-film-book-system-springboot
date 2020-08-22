@@ -2,6 +2,7 @@ package com.liang.ticketbooksystem.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.liang.ticketbooksystem.pojo.support.Response;
 import com.liang.ticketbooksystem.service.serviceImpl.SessionServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,10 @@ public class SessionController {
     public ResponseEntity<JSONObject> getOne(@PathVariable Integer id) {
    return   service.getSessionById(id);
     }
-
+    @GetMapping("/count")
+    public ResponseEntity<JSONObject> getCount() {
+        return Response.succeedToQuery(service.count());
+    }
 //    @GetMapping("/session-duplication")
 //    public ResponseEntity<JSONObject> isTypeDuplication(@RequestParam("type") String type) throws ClassNotFoundException {
 //

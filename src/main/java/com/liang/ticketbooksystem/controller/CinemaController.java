@@ -1,6 +1,7 @@
 package com.liang.ticketbooksystem.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.liang.ticketbooksystem.pojo.support.Response;
 import com.liang.ticketbooksystem.service.serviceImpl.CinemaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -41,7 +42,10 @@ public class CinemaController {
         return cinemaService.updateCinema(jsonParam);
 
     }
-
+    @GetMapping("/count")
+    public ResponseEntity<JSONObject> getCount() {
+        return Response.succeedToQuery(cinemaService.count());
+    }
     @GetMapping("{id}")
     public ResponseEntity<JSONObject> getCinemaById(@PathVariable int id) {
        return cinemaService.queryById(id);

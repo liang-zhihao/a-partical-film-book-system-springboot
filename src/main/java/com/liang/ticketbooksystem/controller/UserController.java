@@ -1,6 +1,7 @@
 package com.liang.ticketbooksystem.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.liang.ticketbooksystem.pojo.support.Response;
 import com.liang.ticketbooksystem.service.serviceImpl.UserServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,10 @@ public class UserController {
     @PostMapping("/user/accessToken")
     public ResponseEntity<JSONObject> getUserByToken(@RequestBody JSONObject jsonObject) {
         return service.getUserByToken(jsonObject);
+    }
+    @GetMapping("/user/count")
+    public ResponseEntity<JSONObject> getCount() {
+        return Response.succeedToQuery(service.count());
     }
 
 }

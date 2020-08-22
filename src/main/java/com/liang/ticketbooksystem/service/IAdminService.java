@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 @Service
 public interface IAdminService extends IService<Admin> {
     ResponseEntity<JSONObject> getList();
@@ -24,4 +22,7 @@ public interface IAdminService extends IService<Admin> {
     ResponseEntity<JSONObject> createAdmin(@RequestBody JSONObject jsonParam);
 
     ResponseEntity<JSONObject> isUsernameDuplication(@RequestParam("username") String username);
+
+
+
 }

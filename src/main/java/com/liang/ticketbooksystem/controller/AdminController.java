@@ -1,6 +1,7 @@
 package com.liang.ticketbooksystem.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.liang.ticketbooksystem.pojo.support.Response;
 import com.liang.ticketbooksystem.service.serviceImpl.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -9,39 +10,44 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @EnableAutoConfiguration
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/admin")
 public class AdminController {
     @Autowired
     private AdminServiceImpl adminService;
 
-    @GetMapping("/admin")
+    @GetMapping("")
     public ResponseEntity<JSONObject> getAdmin() {
-       return adminService.getList();
+        return adminService.getList();
     }
 
-    @PostMapping("/admin")
+    @PostMapping("")
     public ResponseEntity<JSONObject> createAdmin(@RequestBody JSONObject jsonParam) {
     return adminService.createAdmin(jsonParam);
 
     }
 
-    @PutMapping("/admin")
+    @PutMapping("")
     public ResponseEntity<JSONObject> updateAdmin(@RequestBody JSONObject jsonParam) {
        return  adminService.updateAdmin(jsonParam);
     }
 
 
-    @DeleteMapping("/admin")
+    @DeleteMapping("")
     public ResponseEntity<JSONObject> deleteAdmin(@RequestParam("adminId") int adminId) {
 
        return adminService.deleteAdmin(adminId);
 
     }
 
-    @GetMapping("/admin/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<JSONObject> getAdminByKey(@PathVariable Integer id) {
         return adminService.queryById(id);
 
+    }
+    @GetMapping("/count")
+    public ResponseEntity<JSONObject> getCount() {
+        int count=adminService.count();
+        return Response.succeedToQuery(count);
     }
 //    Bookmark: get method must include params:{ }, post {}
     @GetMapping("/admin/username-duplication")
